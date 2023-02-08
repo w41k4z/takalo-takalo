@@ -5,6 +5,7 @@ class Connection extends CI_Controller
 {
 	public function __construct()
 	{
+		session_start();
 		parent::__construct();
 	}
     
@@ -25,7 +26,7 @@ class Connection extends CI_Controller
         $mail = $this->input->post("mail");
 		$user = $this->client->logIn($password, $mail);
 		if($user != null) {
-			$this->session->set_userdata('user', $user);
+			$_SESSION['user'] = $user;
 			redirect(base_url('index.php/page/'));
 		} else {
 			redirect(base_url("index.php/connection/login/error"));
@@ -42,7 +43,7 @@ class Connection extends CI_Controller
 		$new_client_id = $this->client->create($name, $first_name, $contact);
 		$this->account->create($new_client_id, $password, $mail, false);
 		
-		$this->session->set_userdata('user', $this->client->get_user_by_id($new_client_id));
+		$_SESSION['user'] = $this->client->get_user_by_id($new_client_id);
 		redirect(base_url('index.php/page/'));
 	}
 }

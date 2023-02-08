@@ -20,5 +20,24 @@ class Product extends CI_Model {
         $resultset->free_result();
         return $result;
     }
+    
+    public function get_all_proposition($client_id) {
+        $request = "SELECT product.*, client.name, client.first_name, client.contact FROM product JOIN client ON product.client_id = client.client_id WHERE product.client_id != ".$client_id;
+        $resultset = $this->db->query($request);
+        $result = $resultset->result();
+        $resultset->next_result();
+        $resultset->free_result();
+        return $result;
+    }
+    
+    public function get_product($client_id, $motif, $category) {
+        $where_next = $category == 'all' ? '' : ' AND product.category_id = '.$category; 
+        $request = "SELECT product.*, client.name, client.first_name, client.contact FROM product JOIN client ON product.client_id = client.client_id WHERE product.client_id != ".$client_id." AND product.description LIKE '%".$motif."%'".$where_next;
+        $resultset = $this->db->query($request);
+        $result = $resultset->result();
+        $resultset->next_result();
+        $resultset->free_result();
+        return $result;
+    }
 }
 ?>

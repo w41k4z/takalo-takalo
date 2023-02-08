@@ -30,5 +30,14 @@ class Client extends CI_Model {
         $resultset->free_result();
         return $result;
     }
+    
+    public function get_user_product($user_id) {
+        $request = "SELECT product.*, category.category FROM product JOIN category ON product.category_id = category.category_id WHERE product.client_id = ".$user_id;
+        $resultset = $this->db->query($request);
+        $result = $resultset->result();
+        $resultset->next_result();
+        $resultset->free_result();
+        return $result;
+    }
 }
 ?>

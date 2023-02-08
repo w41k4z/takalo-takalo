@@ -25,12 +25,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center mt-4 mb-3 px-3">
             <div
-                style="width: 70px; height: 70px; background: url('<?= base_url("assets/img/client/user.jpg") ?>') center; border: 5px solid white; border-radius: 50%;">
+                style="width: 70px; height: 70px; background: url('<?= base_url("assets/img/client/usr.png") ?>') center no-repeat; border: 5px solid white; border-radius: 50%;">
             </div>
-            <p class="m-0 mt-3">Bal bal</p>
-            <p clas="m-0" style="color: blue; font-size: 15px;">Dev pro</p>
+            <p class="m-0 mt-3">
+                <?= $_SESSION['user']->first_name." ".$_SESSION['user']->name ?>
+            </p>
         </div>
-        <ul class="nav nav-pills flex-column mb-auto px-3" style="font-size: 14px;">
+        <ul class="mt-5 nav nav-pills flex-column mb-auto px-3" style="font-size: 14px;">
             <li class="nav-item">
                 <a href="<?= base_url("index.php/page/admin/home") ?>" class="nav-link text-white" aria-current="page">
                     <i class="fas fa-newspaper me-2"></i>
@@ -54,17 +55,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <img src="<?= base_url("assets/img/client/user.png") ?>" alt="" width="32" height="32"
+                    class="rounded-circle me-2">
                 <strong>mdo</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="<?= base_url("index.php/page/deconnection") ?>">Sign out</a></li>
             </ul>
         </div>
     </div>
+    <script src="<?= base_url("assets/bootstrap/js/bootstrap.bundle.min.js") ?>"></script>
